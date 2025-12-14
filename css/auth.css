@@ -1,0 +1,92 @@
+* {
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #6366f1, #22d3ee);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.auth-card {
+  width: 360px;
+  padding: 32px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  color: white;
+}
+
+.auth-card h2 {
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  text-align: center;
+  opacity: 0.85;
+  margin-bottom: 24px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 14px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button.primary {
+  background: #111827;
+  color: white;
+  margin-bottom: 10px;
+}
+
+button.secondary {
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255,255,255,0.4);
+  margin-bottom: 16px;
+}
+
+button.google {
+  background: white;
+  color: #111827;
+}
+
+.divider {
+  text-align: center;
+  margin: 14px 0;
+  opacity: 0.7;
+  font-size: 13px;
+}
+
+.error {
+  margin-top: 12px;
+  color: #fecaca;
+  font-size: 13px;
+  text-align: center;
+}
