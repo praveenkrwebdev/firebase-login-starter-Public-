@@ -5,11 +5,11 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   signOut,
-  onAuthStateChanged
+  onAuthStateChanged,
+  sendPasswordResetEmail
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 const provider = new GoogleAuthProvider();
-
 const getErrorBox = () => document.getElementById("error");
 
 /* LOGIN */
@@ -47,6 +47,27 @@ window.googleLogin = () => {
     .catch(err => alert(err.message));
 };
 
+/* 🔑 FORGOT PASSWORD */
+window.resetPassword = () => {
+  const email = document.getElementById("email")?.value;
+  const errorBox = getErrorBox();
+
+  if (!email) {
+    errorBox.innerText = "Please enter your email first.";
+    return;
+  }
+
+  sendPasswordResetEmail(auth, email)
+    .then(() => {
+      errorBox.style.color = "green";
+      errorBox.innerText = "Password reset email sent. Check your inbox.";
+    })
+    .catch(err => {
+      errorBox.style.color = "red";
+      errorBox.innerText = err.message;
+    });
+};
+
 /* LOGOUT */
 window.logout = () => {
   signOut(auth).then(() => {
@@ -54,7 +75,7 @@ window.logout = () => {
   });
 };
 
-/* AUTH STATE (OPTIONAL BUT BEST PRACTICE) */
+/* AUTH STATE */
 onAuthStateChanged(auth, user => {
   if (!user && !location.pathname.includes("login")) {
     window.location.href = "login.html";
