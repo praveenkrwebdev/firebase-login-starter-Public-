@@ -1,12 +1,12 @@
 import { auth } from "./firebase.js";
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
   signOut,
-  onAuthStateChanged,
-  sendPasswordResetEmail
+  onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 const provider = new GoogleAuthProvider();
@@ -55,14 +55,22 @@ window.logout = () => {
   });
 };
 
-/* PASSWORD RESET */
-window.resetPassword = async () => {
-  const email = document.getElementById("email")?.value.trim();
+/* AUTH STATE (OPTIONAL BUT BEST PRACTICE) */
+onAuthStateChanged(auth, user => {
+  if (!user && !location.pathname.includes("login")) {
+    window.location.href = "login.html";
+  }
+});
+
+
+const auth = getAuth();
+
+window.resetPassword = async function () {
+  const email = document.getElementById("email").value.trim();
   const errorEl = document.getElementById("error");
 
   if (!email) {
     errorEl.textContent = "Please enter your email address first.";
-    errorEl.style.color = "#ef4444";
     return;
   }
 
@@ -77,9 +85,4 @@ window.resetPassword = async () => {
   }
 };
 
-/* AUTH STATE */
-onAuthStateChanged(auth, user => {
-  if (!user && !location.pathname.includes("login")) {
-    window.location.href = "login.html";
-  }
-});
+is this correct?
