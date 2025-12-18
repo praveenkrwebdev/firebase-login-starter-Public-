@@ -80,7 +80,7 @@ onAuthStateChanged(auth, user => {
   if (!user && !location.pathname.includes("login")) {
     window.location.href = "login.html";
   }
-/* 👁️ Password visibility toggle (SVG version) */
+/* 👁️ Correct password visibility logic */
 document.addEventListener("DOMContentLoaded", () => {
   const password = document.getElementById("password");
   const btn = document.getElementById("togglePasswordBtn");
@@ -89,14 +89,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!password || !btn) return;
 
+  // Ensure initial state is correct
+  password.type = "password";
+  eyeOpen.style.display = "none";
+  eyeClosed.style.display = "block";
+
   btn.addEventListener("click", () => {
     const isHidden = password.type === "password";
-    password.type = isHidden ? "text" : "password";
 
-    eyeOpen.style.display = isHidden ? "none" : "block";
-    eyeClosed.style.display = isHidden ? "block" : "none";
+    password.type = isHidden ? "text" : "password";
+    eyeOpen.style.display = isHidden ? "block" : "none";
+    eyeClosed.style.display = isHidden ? "none" : "block";
   });
 });
+
 
 
 });
