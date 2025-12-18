@@ -105,6 +105,7 @@ button.google {
   color: #ffffff;
   text-decoration: underline;
 }
+
 .password-wrapper {
   position: relative;
   width: 100%;
@@ -112,33 +113,26 @@ button.google {
 
 .password-wrapper input {
   width: 100%;
-  padding-right: 48px;
+  padding-right: 44px;
 }
 
 .toggle-password {
   position: absolute;
-  right: 14px;
+  right: 12px;
   top: 50%;
   transform: translateY(-50%);
   background: none;
   border: none;
   padding: 0;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 22px;
+  height: 22px;
+  z-index: 2;
 }
 
 .toggle-password svg {
   width: 22px;
   height: 22px;
-  stroke: rgba(0,0,0,0.6);
-  fill: none;
-  stroke-width: 2;
-  pointer-events: none;
-}
-
-
-.toggle-password:hover svg {
-  stroke: rgba(0,0,0,0.9);
+  fill: rgba(0,0,0,0.6);
+  pointer-events: none; /* important */
 }
