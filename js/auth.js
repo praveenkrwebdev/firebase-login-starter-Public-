@@ -80,22 +80,23 @@ onAuthStateChanged(auth, user => {
   if (!user && !location.pathname.includes("login")) {
     window.location.href = "login.html";
   }
-  /* 👁️ TOGGLE PASSWORD VISIBILITY */
-/* 👁️ Toggle Password Visibility */
-window.togglePassword = () => {
-  const input = document.getElementById("password");
-  const icon = document.getElementById("eyeIcon");
+/* 👁️ Password visibility toggle (SVG version) */
+document.addEventListener("DOMContentLoaded", () => {
+  const password = document.getElementById("password");
+  const btn = document.getElementById("togglePasswordBtn");
+  const eyeOpen = document.getElementById("eyeOpen");
+  const eyeClosed = document.getElementById("eyeClosed");
 
-  if (!input || !icon) return;
+  if (!password || !btn) return;
 
-  const isHidden = input.type === "password";
-  input.type = isHidden ? "text" : "password";
+  btn.addEventListener("click", () => {
+    const isHidden = password.type === "password";
+    password.type = isHidden ? "text" : "password";
 
-  // Change icon (open / closed eye)
-  icon.innerHTML = isHidden
-    ? `<path d="M2 12s3 7 10 7c2.1 0 3.9-.6 5.4-1.5L3.5 3.6 2 5l4.3 4.3C4 10.6 2 12 2 12zm10-7c7 0 10 7 10 7s-1.2 2.8-4 4.9L9.1 7.1C10 6.5 11 6 12 6z"/>`
-    : `<path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/><circle cx="12" cy="12" r="2.5"/>`;
-};
+    eyeOpen.style.display = isHidden ? "none" : "block";
+    eyeClosed.style.display = isHidden ? "block" : "none";
+  });
+});
 
 
 });
