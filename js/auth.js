@@ -80,28 +80,17 @@ onAuthStateChanged(auth, user => {
   if (!user && !location.pathname.includes("login")) {
     window.location.href = "login.html";
   }
-/* 👁️ Correct password visibility logic */
 document.addEventListener("DOMContentLoaded", () => {
-  const password = document.getElementById("password");
+  const input = document.getElementById("password");
   const btn = document.getElementById("togglePasswordBtn");
-  const eyeOpen = document.getElementById("eyeOpen");
-  const eyeClosed = document.getElementById("eyeClosed");
 
-  if (!password || !btn) return;
-
-  // Ensure initial state is correct
-  password.type = "password";
-  eyeOpen.style.display = "none";
-  eyeClosed.style.display = "block";
+  if (!input || !btn) return;
 
   btn.addEventListener("click", () => {
-    const isHidden = password.type === "password";
-
-    password.type = isHidden ? "text" : "password";
-    eyeOpen.style.display = isHidden ? "block" : "none";
-    eyeClosed.style.display = isHidden ? "none" : "block";
+    input.type = input.type === "password" ? "text" : "password";
   });
 });
+
 
 
 
