@@ -16,7 +16,12 @@
       <p class="subtitle">Practice at your own pace. We’re here to help</p>
 
       <input type="email" id="email" placeholder="Email address" />
-      <input type="password" id="password" placeholder="Password" />
+      <!-- <input type="password" id="password" placeholder="Password" /> -->
+      <div class="password-wrapper">
+  <input type="password" id="password" placeholder="Password" />
+  <span class="toggle-password" onclick="togglePassword()">👁️</span>
+</div>
+
       <button class="forgot" onclick="resetPassword()">
   Forgot password?
 </button>
