@@ -112,7 +112,7 @@ button.google {
 
 .password-wrapper input {
   width: 100%;
-  padding-right: 46px; /* space for eye */
+  padding-right: 48px;
 }
 
 .toggle-password {
@@ -132,11 +132,11 @@ button.google {
 .toggle-password svg {
   width: 20px;
   height: 20px;
-  fill: rgba(0, 0, 0, 0.45);
+  stroke: rgba(0,0,0,0.6);
+  fill: none;
+  stroke-width: 2;
 }
 
 .toggle-password:hover svg {
-  fill: rgba(0, 0, 0, 0.75);
+  stroke: rgba(0,0,0,0.9);
 }
-
-
