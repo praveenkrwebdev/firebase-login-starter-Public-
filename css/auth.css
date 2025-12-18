@@ -119,11 +119,11 @@ button.google {
 .toggle-password {
   position: absolute;
   right: 12px;
-  top: 50%;
+  top: 40%;
   transform: translateY(-50%);
   cursor: pointer;
-  font-size: 18px;
-  opacity: 0.6;
+  font-size: 13px;
+  opacity: 0.5;
   user-select: none;
 }
 
