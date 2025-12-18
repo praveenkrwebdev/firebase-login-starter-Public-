@@ -20,24 +20,14 @@
        <div class="password-wrapper">
   <input type="password" id="password" placeholder="Password" />
 
-  <button
-    type="button"
-    class="toggle-password"
-    id="togglePasswordBtn"
-    aria-label="Toggle password visibility"
-  >
-    <!-- CLOSED eye (default) -->
-    <svg id="eyeClosed" viewBox="0 0 24 24">
-      <path d="M2 5l17 17M12 5c-7 0-10 7-10 7a18 18 0 0 0 5 5M12 19c7 0 10-7 10-7a18 18 0 0 0-4-5"/>
-    </svg>
-
-    <!-- OPEN eye -->
-    <svg id="eyeOpen" viewBox="0 0 24 24" style="display:none">
+  <button type="button" class="toggle-password" id="togglePasswordBtn">
+    <svg id="eyeIcon" viewBox="0 0 24 24">
       <path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7z"/>
       <circle cx="12" cy="12" r="3"/>
     </svg>
   </button>
 </div>
+
 
 
       <button class="forgot" onclick="resetPassword()">
