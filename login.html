@@ -22,18 +22,26 @@
     </div>
     <p class="field-error" id="passwordError"></p>
 
+    <!-- Remember Me -->
+    <label class="remember">
+      <input type="checkbox" id="rememberMe" />
+      Remember me
+    </label>
+
     <button class="forgot" onclick="resetPassword()">Forgot password?</button>
 
-    <button class="primary" onclick="login()">Login</button>
+    <button class="primary" id="loginBtn" onclick="login()">
+      <span class="btn-text">Login</span>
+      <span class="spinner"></span>
+    </button>
+
     <button class="secondary" onclick="location.href='signup.html'">
       Create account
     </button>
 
     <div class="divider">OR</div>
 
-    <button class="google" onclick="googleLogin()">
-      Continue with Google
-    </button>
+    <button class="google" onclick="googleLogin()">Continue with Google</button>
   </div>
 </div>
 
