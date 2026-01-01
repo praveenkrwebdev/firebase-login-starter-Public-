@@ -2,48 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Login | Firebase Starter</title>
+  <title>Login</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="icon" type="image/png" href="pinklogo.png">
   <link rel="stylesheet" href="css/auth.css" />
 </head>
 <body>
 
-  <div class="auth-container">
-    <div class="auth-card">
-
-      <h2>Welcome Back 👋</h2>
-      <p class="subtitle">Practice at your own pace. We’re here to help</p>
+<div class="auth-container">
+  <div class="auth-card">
+    <h2>Welcome Back 👋</h2>
+    <p class="subtitle">Login to continue</p>
 
     <input type="email" id="email" placeholder="Email address" />
-<p class="field-error" id="emailError"></p>
+    <p class="field-error" id="emailError"></p>
 
-<div class="password-wrapper">
-  <input type="password" id="password" placeholder="Password" />
-  <span class="toggle-password" onclick="togglePassword()">👁️</span>
-</div>
-<p class="field-error" id="passwordError"></p>
-
-
-      <button class="forgot" onclick="resetPassword()">
-  Forgot password?
-</button>
-
-      <button class="primary" onclick="login()">Login</button>
-      <button class="secondary" onclick="signup()">Create account</button>
-
-      <div class="divider">OR</div>
-
-      
-      <button class="google" onclick="googleLogin()">
-        Continue with Google
-      </button>
-
-      <!-- <p id="error" class="error"></p> -->
-
+    <div class="password-wrapper">
+      <input type="password" id="password" placeholder="Password" />
+      <span class="toggle-password" onclick="togglePassword()">👁️</span>
     </div>
-  </div>
+    <p class="field-error" id="passwordError"></p>
 
-  <script type="module" src="js/auth.js"></script>
+    <button class="forgot" onclick="resetPassword()">Forgot password?</button>
+
+    <button class="primary" onclick="login()">Login</button>
+    <button class="secondary" onclick="location.href='signup.html'">
+      Create account
+    </button>
+
+    <div class="divider">OR</div>
+
+    <button class="google" onclick="googleLogin()">
+      Continue with Google
+    </button>
+  </div>
+</div>
+
+<script type="module" src="js/auth.js"></script>
 </body>
 </html>
