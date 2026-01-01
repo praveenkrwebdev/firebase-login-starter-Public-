@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Signup</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/auth.css" />
+</head>
+<body>
+
+<div class="auth-container">
+  <div class="auth-card">
+    <h2>Create Account ✨</h2>
+    <p class="subtitle">It takes less than a minute</p>
+
+    <input type="email" id="email" placeholder="Email address" />
+    <p class="field-error" id="emailError"></p>
+
+    <div class="password-wrapper">
+      <input type="password" id="password" placeholder="Password (min 6 chars)" />
+      <span class="toggle-password" onclick="togglePassword()">👁️</span>
+    </div>
+    <p class="field-error" id="passwordError"></p>
+
+    <button class="primary" onclick="signup()">Create Account</button>
+
+    <button class="secondary" onclick="location.href='login.html'">
+      Already have an account?
+    </button>
+
+    <div class="divider">OR</div>
+
+    <button class="google" onclick="googleLogin()">
+      Sign up with Google
+    </button>
+  </div>
+</div>
+
+<script type="module" src="js/auth.js"></script>
+</body>
+</html>
