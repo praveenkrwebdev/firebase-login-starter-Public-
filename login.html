@@ -10,38 +10,38 @@
 
 <div class="auth-container">
   <div class="auth-card">
-    <h2>Welcome Back 👋</h2>
+
+    <h2>Welcome back 👋</h2>
     <p class="subtitle">Login to continue</p>
 
-    <input type="email" id="email" placeholder="Email address" />
-    <p class="field-error" id="emailError"></p>
-
-    <div class="password-wrapper">
-      <input type="password" id="password" placeholder="Password" />
-      <span class="toggle-password" onclick="togglePassword()">👁️</span>
+    <div class="field">
+      <input type="email" id="email" placeholder="Email address">
+      <span class="field-alert" id="emailError"></span>
     </div>
-    <p class="field-error" id="passwordError"></p>
 
-    <!-- Remember Me -->
+    <div class="field">
+      <div class="password-wrapper">
+        <input type="password" id="password" placeholder="Password">
+        <span class="toggle-password" onclick="togglePassword()">👁️</span>
+      </div>
+      <span class="field-alert" id="passwordError"></span>
+    </div>
+
     <label class="remember">
-      <input type="checkbox" id="rememberMe" />
-      Remember me
+      <input type="checkbox" id="rememberMe"> Remember me
     </label>
 
-    <button class="forgot" onclick="resetPassword()">Forgot password?</button>
-
     <button class="primary" id="loginBtn" onclick="login()">
-      <span class="btn-text">Login</span>
+      <span>Login</span>
       <span class="spinner"></span>
     </button>
+
+    <button class="link" onclick="resetPassword()">Forgot password?</button>
 
     <button class="secondary" onclick="location.href='signup.html'">
       Create account
     </button>
 
-    <div class="divider">OR</div>
-
-    <button class="google" onclick="googleLogin()">Continue with Google</button>
   </div>
 </div>
 
