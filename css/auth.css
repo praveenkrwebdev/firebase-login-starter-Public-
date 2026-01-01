@@ -130,3 +130,17 @@ button.google {
 .toggle-password:hover {
   opacity: 1;
 }
+.field-error {
+  color: #e53935;
+  font-size: 13px;
+  margin-top: 6px;
+  display: none;
+}
+
+input.error {
+  border: 1.5px solid #e53935;
+}
+
+input.success {
+  border: 1.5px solid #4caf50;
+}
