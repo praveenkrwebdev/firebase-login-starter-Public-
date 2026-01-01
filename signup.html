@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Signup</title>
+  <title>Create account</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="css/auth.css" />
 </head>
@@ -10,26 +10,37 @@
 
 <div class="auth-container">
   <div class="auth-card">
-    <h2>Create Account ✨</h2>
-    <p class="subtitle">Verify your email to continue</p>
 
-    <input type="email" id="email" placeholder="Email address" />
-    <p class="field-error" id="emailError"></p>
+    <h2>Create account ✨</h2>
+    <p class="subtitle">It takes less than a minute</p>
 
-    <div class="password-wrapper">
-      <input type="password" id="password" placeholder="Password (min 6 chars)" />
-      <span class="toggle-password" onclick="togglePassword()">👁️</span>
+    <div class="field">
+      <input type="email" id="email" placeholder="Email address">
+      <span class="field-alert" id="emailError"></span>
     </div>
-    <p class="field-error" id="passwordError"></p>
+
+    <div class="field">
+      <div class="password-wrapper">
+        <input type="password" id="password" placeholder="Password (min 6)">
+        <span class="toggle-password" onclick="togglePassword()">👁️</span>
+      </div>
+      <span class="field-alert" id="passwordError"></span>
+    </div>
+
+    <div class="field">
+      <input type="password" id="confirmPassword" placeholder="Confirm password">
+      <span class="field-alert" id="confirmPasswordError"></span>
+    </div>
 
     <button class="primary" id="signupBtn" onclick="signup()">
-      <span class="btn-text">Create Account</span>
+      <span>Create account</span>
       <span class="spinner"></span>
     </button>
 
     <button class="secondary" onclick="location.href='login.html'">
       Already have an account?
     </button>
+
   </div>
 </div>
 
