@@ -101,6 +101,12 @@ window.resetPassword = async () => {
   emailError.style.color = "green";
   emailError.innerText = "Reset email sent";
 };
+/* LOGOUT */
+window.logout = () => {
+  signOut(auth).then(() => {
+    window.location.href = "login.html";
+  });
+};
 
 /* TOGGLE PASSWORD */
 window.togglePassword = () => {
