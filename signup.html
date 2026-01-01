@@ -11,7 +11,7 @@
 <div class="auth-container">
   <div class="auth-card">
     <h2>Create Account ✨</h2>
-    <p class="subtitle">It takes less than a minute</p>
+    <p class="subtitle">Verify your email to continue</p>
 
     <input type="email" id="email" placeholder="Email address" />
     <p class="field-error" id="emailError"></p>
@@ -22,16 +22,13 @@
     </div>
     <p class="field-error" id="passwordError"></p>
 
-    <button class="primary" onclick="signup()">Create Account</button>
+    <button class="primary" id="signupBtn" onclick="signup()">
+      <span class="btn-text">Create Account</span>
+      <span class="spinner"></span>
+    </button>
 
     <button class="secondary" onclick="location.href='login.html'">
       Already have an account?
-    </button>
-
-    <div class="divider">OR</div>
-
-    <button class="google" onclick="googleLogin()">
-      Sign up with Google
     </button>
   </div>
 </div>
