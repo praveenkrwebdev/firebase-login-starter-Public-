@@ -1,14 +1,10 @@
 * {
   box-sizing: border-box;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: Inter, sans-serif;
 }
 
 body {
-  margin: 0;
-  background: #f5f7fb;
-}
-
-.auth-container {
+  background: linear-gradient(135deg, #667eea, #764ba2);
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -16,47 +12,45 @@ body {
 }
 
 .auth-card {
-  width: 100%;
-  max-width: 380px;
   background: #fff;
   padding: 32px;
+  width: 100%;
+  max-width: 380px;
   border-radius: 14px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+  box-shadow: 0 20px 40px rgba(0,0,0,.15);
 }
 
 h2 {
-  margin: 0 0 6px;
+  margin-bottom: 6px;
 }
 
 .subtitle {
-  font-size: 14px;
   color: #666;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
+}
+
+.field {
+  margin-bottom: 14px;
 }
 
 input {
   width: 100%;
   padding: 12px;
   border-radius: 8px;
-  border: 1.5px solid #ddd;
-  margin-top: 8px;
-  font-size: 15px;
-}
-
-input:focus {
+  border: 1px solid #ddd;
   outline: none;
-  border-color: #6366f1;
 }
 
 input.error {
   border-color: #e53935;
+  background: #fff5f5;
 }
 
-.field-error {
-  display: none;
-  font-size: 13px;
+.field-alert {
   color: #e53935;
-  margin-top: 6px;
+  font-size: 12px;
+  display: none;
+  margin-top: 4px;
 }
 
 .password-wrapper {
@@ -71,87 +65,62 @@ input.error {
   cursor: pointer;
 }
 
+.remember {
+  font-size: 14px;
+  margin-bottom: 14px;
+  display: flex;
+  gap: 6px;
+}
+
 button {
   width: 100%;
   padding: 12px;
   border-radius: 8px;
   border: none;
-  font-size: 15px;
   cursor: pointer;
-  margin-top: 12px;
 }
 
 .primary {
-  background: #6366f1;
+  background: #667eea;
   color: #fff;
+  margin-bottom: 10px;
+  position: relative;
 }
 
 .secondary {
-  background: #f1f3f9;
-}
-
-.google {
-  background: #fff;
+  background: transparent;
   border: 1px solid #ddd;
 }
 
-.forgot {
+.link {
   background: none;
-  color: #6366f1;
-  font-size: 13px;
-  text-align: right;
-  padding: 0;
-  margin-top: 10px;
-}
-
-.divider {
-  text-align: center;
-  font-size: 13px;
-  color: #999;
-  margin: 18px 0;
-}
-/* existing styles remain same */
-
-.remember {
-  display: flex;
-  align-items: center;
-  font-size: 13px;
-  margin-top: 10px;
-  color: #555;
-}
-
-.remember input {
-  margin-right: 6px;
-}
-
-button {
-  position: relative;
+  color: #667eea;
+  font-size: 14px;
+  margin-bottom: 10px;
 }
 
 .spinner {
   display: none;
-  width: 18px;
-  height: 18px;
-  border: 2px solid #fff;
-  border-top-color: transparent;
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
+}
+
+button.loading span:first-child {
+  visibility: hidden;
 }
 
 button.loading .spinner {
-  display: inline-block;
-}
-
-button.loading .btn-text {
-  opacity: 0.6;
+  display: block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #fff;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-  to {
-    transform: rotate(360deg) translateY(-50%);
-  }
+  to { transform: rotate(360deg); }
 }
