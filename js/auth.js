@@ -2,133 +2,107 @@ import { auth } from "./firebase.js";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
-  sendPasswordResetEmail,
   sendEmailVerification,
+  sendPasswordResetEmail,
   setPersistence,
   browserLocalPersistence,
-  browserSessionPersistence,
-  onAuthStateChanged,
-  signOut
+  browserSessionPersistence
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-const provider = new GoogleAuthProvider();
-
-const emailInput = document.getElementById("email");
-const passwordInput = document.getElementById("password");
+/* ELEMENTS */
+const email = document.getElementById("email");
+const password = document.getElementById("password");
 const emailError = document.getElementById("emailError");
 const passwordError = document.getElementById("passwordError");
-const rememberMe = document.getElementById("rememberMe");
 
+/* HELPERS */
 function clearErrors() {
-  emailError.style.display = "none";
-  passwordError.style.display = "none";
-  emailInput.classList.remove("error");
-  passwordInput.classList.remove("error");
+  document.querySelectorAll(".field-alert").forEach(e => e.style.display = "none");
+  document.querySelectorAll("input").forEach(i => i.classList.remove("error"));
 }
 
-function showError(input, el, msg) {
-  el.innerText = msg;
-  el.style.display = "block";
+function showError(input, errorEl, msg) {
   input.classList.add("error");
-}
-
-function setLoading(btn, state) {
-  btn.classList.toggle("loading", state);
-  btn.disabled = state;
+  errorEl.innerText = msg;
+  errorEl.style.display = "block";
 }
 
 /* LOGIN */
 window.login = async () => {
   clearErrors();
+
+  const remember = document.getElementById("rememberMe")?.checked;
   const btn = document.getElementById("loginBtn");
 
-  if (!emailInput.value) return showError(emailInput, emailError, "Email required");
-  if (!passwordInput.value) return showError(passwordInput, passwordError, "Password required");
+  if (!email.value) return showError(email, emailError, "Email required");
+  if (!password.value) return showError(password, passwordError, "Password required");
 
-  setLoading(btn, true);
+  btn.classList.add("loading");
 
-  await setPersistence(
-    auth,
-    rememberMe?.checked
+  try {
+    await setPersistence(auth, remember
       ? browserLocalPersistence
       : browserSessionPersistence
-  );
+    );
 
-  signInWithEmailAndPassword(auth, emailInput.value, passwordInput.value)
-    .then(({ user }) => {
-      if (!user.emailVerified) {
-        signOut(auth);
-        showError(emailInput, emailError, "Please verify your email first");
-        setLoading(btn, false);
-        return;
-      }
-      location.href = "index.html";
-    })
-    .catch(() => {
-      showError(passwordInput, passwordError, "Invalid credentials");
-      setLoading(btn, false);
-    });
+    const res = await signInWithEmailAndPassword(auth, email.value, password.value);
+
+    if (!res.user.emailVerified) {
+      await sendEmailVerification(res.user);
+      alert("Please verify your email. Verification link sent.");
+      btn.classList.remove("loading");
+      return;
+    }
+
+    location.href = "index.html";
+
+  } catch (err) {
+    showError(email, emailError, "Invalid email or password");
+    btn.classList.remove("loading");
+  }
 };
 
-/* SIGNUP + EMAIL VERIFICATION */
-window.signup = () => {
+/* SIGNUP */
+window.signup = async () => {
   clearErrors();
+
+  const confirmPassword = document.getElementById("confirmPassword");
+  const confirmPasswordError = document.getElementById("confirmPasswordError");
   const btn = document.getElementById("signupBtn");
 
-  if (passwordInput.value.length < 6)
-    return showError(passwordInput, passwordError, "Min 6 characters");
+  if (!email.value) return showError(email, emailError, "Email required");
+  if (password.value.length < 6)
+    return showError(password, passwordError, "Minimum 6 characters");
+  if (password.value !== confirmPassword.value)
+    return showError(confirmPassword, confirmPasswordError, "Passwords do not match");
 
-  setLoading(btn, true);
+  btn.classList.add("loading");
 
-  createUserWithEmailAndPassword(auth, emailInput.value, passwordInput.value)
-    .then(({ user }) => {
-      sendEmailVerification(user).then(() => {
-        alert("Verification email sent. Please verify before login.");
-        signOut(auth);
-        location.href = "login.html";
-      });
-    })
-    .catch(() => {
-      showError(emailInput, emailError, "Email already in use");
-      setLoading(btn, false);
-    });
-};
+  try {
+    const user = await createUserWithEmailAndPassword(auth, email.value, password.value);
+    await sendEmailVerification(user.user);
 
-/* GOOGLE LOGIN */
-window.googleLogin = () => {
-  signInWithPopup(auth, provider)
-    .then(() => location.href = "index.html")
-    .catch(alert);
-};
-
-/* RESET PASSWORD */
-window.resetPassword = () => {
-  if (!emailInput.value)
-    return showError(emailInput, emailError, "Enter email first");
-
-  sendPasswordResetEmail(auth, emailInput.value)
-    .then(() => {
-      emailError.style.display = "block";
-      emailError.style.color = "green";
-      emailError.innerText = "Password reset email sent";
-    });
-};
-
-/* PASSWORD TOGGLE */
-window.togglePassword = () => {
-  passwordInput.type =
-    passwordInput.type === "password" ? "text" : "password";
-};
-
-/* AUTH GUARD */
-onAuthStateChanged(auth, user => {
-  if (
-    !user &&
-    !location.pathname.includes("login") &&
-    !location.pathname.includes("signup")
-  ) {
+    alert("Account created! Verify your email before login.");
     location.href = "login.html";
+
+  } catch (err) {
+    showError(email, emailError, "Email already in use");
+    btn.classList.remove("loading");
   }
-});
+};
+
+/* RESET */
+window.resetPassword = async () => {
+  clearErrors();
+  if (!email.value) return showError(email, emailError, "Enter email first");
+
+  await sendPasswordResetEmail(auth, email.value);
+  emailError.style.display = "block";
+  emailError.style.color = "green";
+  emailError.innerText = "Reset email sent";
+};
+
+/* TOGGLE PASSWORD */
+window.togglePassword = () => {
+  password.type = password.type === "password" ? "text" : "password";
+};
